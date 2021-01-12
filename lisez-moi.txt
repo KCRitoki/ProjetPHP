@@ -1,0 +1,11 @@
+Nom de l'équipe :
+Membres : BOMPAIS Solal, DUCLOS Tom, POIS Nicolas
+index.html
+présentation du projet :
+choix techniques :
+configuration logicielle :
+identifiants de connexion :
+    -site web
+    -BD
+    -Hébergeur
+    -Système de géstion
