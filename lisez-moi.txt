@@ -1,5 +1,5 @@
 Nom de l'équipe :
-Membres : BOMPAIS Solal, DUCLOS Tom, POIS Nicolas
+Membres : BOMPAIS Solal, DUCLOS Tom, ROUBIN Quentin
 index.html
 présentation du projet :
 choix techniques :
