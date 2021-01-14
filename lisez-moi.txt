@@ -1,4 +1,4 @@
-Nom de l'équipe : BDR.
+Nom de l'équipe : BDR
 Membres : BOMPAIS Solal, DUCLOS Tom, ROUBIN Quentin
 index.html
 présentation du projet :
