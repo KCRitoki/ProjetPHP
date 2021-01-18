@@ -1,11 +1,25 @@
 <?php
 	include 'utils.inc.php';
+	session_start();
 	
 	$identifiant=$_POST['identifiant'];
 	$email=$_POST['email'];
 	$motdepasse=$_POST['motdepasse'];
 	$motdepasse2=$_POST['motdepasse2'];
 	$action=$_POST['action'];
+	
+	if($motdepasse!=$motdepasse2)
+	{
+		$_SESSION['error']='erreurPassword';
+		header('Location: main.php');
+		exit();
+	}
+	if(empty($identifiant) || empty($email) || empty($motdepasse) || empty($motdepasse2))
+	{
+		$_SESSION['error']='erreurEmpty';
+		header('Location: main.php');
+		exit();
+	}
 
 	start_page('unAutreTitre');
 	
@@ -23,7 +37,7 @@
 		echo '<br/><strong>Bouton non géré !</strong><br/>';
 	}
 	
-	echo '<br/><a href="http://quentin-roubin.alwaysdata.net/index.php">Accueil</a><br/>';
+	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.html">Accueil</a><br/>';
 	
 	$dbLink = mysqli_connect('mysql-bdr-projet.alwaysdata.net', '223944', '*9NWFBZ3MHMmAD7')
 		or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
@@ -31,7 +45,7 @@
 	mysqli_select_db($dbLink, 'bdr-projet_bdd')
 		or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
 		
-	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . $motdepasse . '\')';
+	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
 	
 	if(!($dbResult = mysqli_query($dbLink, $query)))
 	{

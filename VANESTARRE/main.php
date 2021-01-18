@@ -1,5 +1,6 @@
 <?php
 	include 'utils.inc.php';
+	session_start();
 	
 	start_page('unTitre');
 	echo '<form action="data-processing.php" method="post">
@@ -9,5 +10,15 @@
 			Vérification du mot de passe<br/><input type="password" name="motdepasse2"/><br/>
 			<input type="submit" name="action" value="mailer"/><br/>
 		  </form>';
+	if($_SESSION['error']=='erreurPassword')
+	{
+		echo $_SESSION['error'] . PHP_EOL;
+		echo '<p style="color:red;">Veuillez vérifier que les mots de passe sont les mêmes!</p>';
+	}
+	if($_SESSION['error']=='erreurEmpty')
+	{
+		echo $_SESSION['error'] . PHP_EOL;
+		echo '<p style="color:red;">Tous les champs sont obligatoires</p>';
+	}
 	end_page();
 ?>

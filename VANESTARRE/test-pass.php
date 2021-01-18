@@ -11,7 +11,7 @@
 		
 
 	
-	$query = 'SELECT login, password FROM users WHERE login=\''.$login.'\' AND password=\''.$pwd.'\'';
+	$query = 'SELECT login, password FROM users WHERE login=\'' . $login . '\' AND password=\'' . md5($pwd) . '\'';
 	if(!($dbResult = mysqli_query($dbLink, $query)))
 	{
 		echo 'Erreur dans requête<br />';
@@ -30,6 +30,6 @@
 	}
 	$_SESSION['suid']=session_id();
 	
-	header('Location: index.php');
+	header('Location: index.html');
 	exit();
 ?>
