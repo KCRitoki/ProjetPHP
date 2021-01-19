@@ -2,14 +2,26 @@ h1
 {
 	color: purple;
 	text-align: center;
-	margin-top: 7%;
-
+	margin-top: 0%;
+	font-size: 80px;
 	
 }
 
 body
 {
-	background-color: yellow;
+	background-color: #FFFFE0;
+}
+
+label
+{
+	display: block;
+	font: 1rem;
+}
+
+
+input, label
+{
+	margin: .4rem 0;
 }
 
 #logo
@@ -30,7 +42,7 @@ img
 #vaneline
 {
 	text-align: center;
-	background-color: purple;
+	background-color: #DFD1E1;
 	align-content: center;
 	width: 50%;
 	margin:0 auto;
@@ -39,7 +51,7 @@ img
 #post 
 {
 	text-align: center;
-	background-color: white;
+	background-color: #E2FCFB;
 	border: solid;
 	width:90%;
 	margin:0 auto;
@@ -48,6 +60,6 @@ img
 	padding-right: 10px;
 }
 
-.double {
+.shadow {
 	text-shadow: 2px 2px 0 black;
 }
