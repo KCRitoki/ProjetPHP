@@ -1,0 +1,65 @@
+h1
+{
+	color: purple;
+	text-align: center;
+	margin-top: 0%;
+	font-size: 80px;
+	
+}
+
+body
+{
+	background-color: #FFFFE0;
+}
+
+label
+{
+	display: block;
+	font: 1rem;
+}
+
+
+input, label
+{
+	margin: .4rem 0;
+}
+
+#logo
+{
+	height: 150px;
+	width: 150px;
+}
+
+img 
+{
+	max-height: 400px;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+}
+
+
+#vaneline
+{
+	text-align: center;
+	background-color: #DFD1E1;
+	align-content: center;
+	width: 50%;
+	margin:0 auto;
+}
+
+#post 
+{
+	text-align: center;
+	background-color: #E2FCFB;
+	border: solid;
+	width:90%;
+	margin:0 auto;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.shadow {
+	text-shadow: 2px 2px 0 black;
+}
