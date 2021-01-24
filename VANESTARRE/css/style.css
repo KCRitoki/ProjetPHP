@@ -52,7 +52,7 @@ input, label
 	width: 150px;
 }
 
-img, .reactions
+img, #reactions
 {
 	height: 50px;
 	width: 50px;
@@ -81,7 +81,7 @@ input
 	padding-top: 10px;
 }
 
-.post 
+#post 
 {
 	text-align: center;
 	background-color: #E2FCFB;
@@ -100,7 +100,8 @@ input
 
 #reactions
 {
-	text-align: right; 
+	text-align: right;
+
 }
 
 .shadow {
