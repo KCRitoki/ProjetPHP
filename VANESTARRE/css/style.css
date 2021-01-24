@@ -7,9 +7,27 @@ h1
 	
 }
 
+h2
+{
+	color: purple;
+	text-align: center;
+	margin-top: 0%;
+	font-size: 40px;
+}
+
+#profile
+{
+	text-align: center;
+}
+
 body
 {
 	background-color: #FFFFE0;
+}
+
+#menu
+{
+	text-align: right;
 }
 
 label
@@ -18,16 +36,26 @@ label
 	font: 1rem;
 }
 
-
 input, label
 {
 	margin: .4rem 0;
+}
+
+#search
+{
+	text-align: center;
 }
 
 #logo
 {
 	height: 150px;
 	width: 150px;
+}
+
+img, .reactions
+{
+	height: 50px;
+	width: 50px;
 }
 
 img 
@@ -38,6 +66,10 @@ img
 	height: auto;
 }
 
+input
+{
+	width: 41%;
+}
 
 #vaneline
 {
@@ -46,9 +78,10 @@ img
 	align-content: center;
 	width: 50%;
 	margin:0 auto;
+	padding-top: 10px;
 }
 
-#post 
+.post 
 {
 	text-align: center;
 	background-color: #E2FCFB;
@@ -58,6 +91,16 @@ img
 	margin-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+#tags
+{
+	text-align: left;
+}
+
+#reactions
+{
+	text-align: right; 
 }
 
 .shadow {
