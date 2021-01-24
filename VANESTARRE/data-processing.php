@@ -8,20 +8,20 @@
 	$motdepasse2=$_POST['motdepasse2'];
 	$action=$_POST['action'];
 	
-	if($motdepasse!=$motdepasse2)
-	{
-		$_SESSION['error']='erreurPassword';
-		header('Location: main.php');
-		exit();
-	}
 	if(empty($identifiant) || empty($email) || empty($motdepasse) || empty($motdepasse2))
 	{
 		$_SESSION['error']='erreurEmpty';
 		header('Location: main.php');
 		exit();
 	}
+	if($motdepasse!=$motdepasse2)
+	{
+		$_SESSION['error']='erreurPassword';
+		header('Location: main.php');
+		exit();
+	}	
 
-	start_page('unAutreTitre');
+	start_page('Inscription terminée');
 	
 	if($action == 'mailer')
 	{

@@ -3,6 +3,14 @@
 	$login=$_POST['login'];
 	$pwd=$_POST['pwd'];
 	
+	if(empty($login) || empty($pwd))
+	{
+		
+		$_SESSION['error']='erreurEmpty';
+		header('Location: login.php');
+		exit();
+	}
+	
 	$dbLink = mysqli_connect('mysql-bdr-projet.alwaysdata.net', '223944', '*9NWFBZ3MHMmAD7')
 		or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
 		
@@ -11,7 +19,7 @@
 		
 
 	
-	$query = 'SELECT login, password FROM users WHERE login=\'' . $login . '\' AND password=\'' . md5($pwd) . '\'';
+	$query = 'SELECT * FROM users WHERE login=\'' . $login . '\' AND password=\'' . md5($pwd) . '\'';
 	if(!($dbResult = mysqli_query($dbLink, $query)))
 	{
 		echo 'Erreur dans requête<br />';
@@ -29,7 +37,10 @@
 		exit();
 	}
 	$_SESSION['suid']=session_id();
+	$_SESSION['login']=$login;
+	$row=mysqli_fetch_assoc($dbResult);
+	$_SESSION['mail']=$row['email'];
 	
-	header('Location: index.html');
+	header('Location: connected.html');
 	exit();
 ?>

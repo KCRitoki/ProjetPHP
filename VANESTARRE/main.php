@@ -2,7 +2,7 @@
 	include 'utils.inc.php';
 	session_start();
 	
-	start_page('unTitre');
+	start_page('S\'inscrire');
 	echo '<form action="data-processing.php" method="post">
 			E-mail<br/><input type="text" name="email"/><br/>
 			Identifiant<br/><input type="text" name="identifiant"/><br/>
@@ -13,7 +13,7 @@
 	if($_SESSION['error']=='erreurPassword')
 	{
 		echo $_SESSION['error'] . PHP_EOL;
-		echo '<p style="color:red;">Veuillez vérifier que les mots de passe sont les mêmes!</p>';
+		echo '<p style="color:red;">Veuillez vérifier que les mots de passe sont identiques!</p>';
 	}
 	if($_SESSION['error']=='erreurEmpty')
 	{
