@@ -18,4 +18,133 @@
 		mysqli_select_db($dbLink, 'bdr-projet_bdd')
 			or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
 	};
+
+// FONCTIONS CRUD MEMBRES
+	function create_member($email, $login, $password)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'INSERT INTO users VALUES (\'' . $email . '\', \'' . $login . '\', \'' . $password . '\');';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+	};
+	
+	function read_member($login)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'SELECT * FROM users WHERE login=\'' . $login . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+		$row=mysqli_fetch_assoc($dbResult);
+		if(!empty($row))
+		{
+			return $row;
+		}
+	};
+	
+//	function update_member($email, $login)
+//	{
+//		$dbLink;
+//		connect_bd($dbLink);
+//		$query = 'UPDATE users SET ';
+//		if(!($dbResult = mysqli_query($dbLink, $query)))
+//		{
+//			echo 'Erreur dans requête<br />';
+//			// Affiche le type d'erreur.
+//			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+//			// Affiche la requête envoyée.
+//			echo 'Requête : ' . $query . '<br/>';
+//			exit();
+//		}
+//	};
+	
+	function delete_member($login)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'DELETE FROM users WHERE login=\'' . $login . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+	};
+	
+// FONCTIONS CRUD MESSAGES
+	function create_message($message)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'INSERT INTO messages VALUES (\'' . $message . '\');';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+	};
+	
+	function read_message($id)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'SELECT * FROM messages WHERE id=\'' . $id . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+		$row=mysqli_fetch_assoc($dbResult);
+		if(!empty($row))
+		{
+			return $row;
+		}
+	};
+	
+	function update_message($id, $message, $love, $cute, $style, $swag)
+	{
+		
+	};
+	
+	function delete_message($id)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'DELETE FROM messages WHERE id=\'' . $id . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+	};
 ?>
