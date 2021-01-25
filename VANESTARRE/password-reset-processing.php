@@ -1,5 +1,5 @@
 <?php
-	include 'utils.inc.php';
+	include 'functions.php';
 	session_start();
 	
 	start_page('Opération en cours');
@@ -23,11 +23,8 @@
 			exit();
 		}
 		
-		$dbLink = mysqli_connect('mysql-bdr-projet.alwaysdata.net', '223944', '*9NWFBZ3MHMmAD7')
-		or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
-		
-		mysqli_select_db($dbLink, 'bdr-projet_bdd')
-			or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
+		$dbLink;
+		connect_bd($dbLink);
 		
 		$query = 'SELECT * FROM resetPwd WHERE token=\'' . md5(hex2bin($token)) . '\' AND exp_date>=\'' . date('Y-m-d H:i:s') . '\';';
 	

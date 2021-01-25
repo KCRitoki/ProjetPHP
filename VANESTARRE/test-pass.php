@@ -1,4 +1,5 @@
 <?php
+	include 'functions.php';
 	session_start();
 	$login=$_POST['login'];
 	$pwd=$_POST['pwd'];
@@ -11,12 +12,8 @@
 		exit();
 	}
 	
-	$dbLink = mysqli_connect('mysql-bdr-projet.alwaysdata.net', '223944', '*9NWFBZ3MHMmAD7')
-		or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
-		
-	mysqli_select_db($dbLink, 'bdr-projet_bdd')
-		or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
-		
+	$dbLink;
+	connect_bd($dbLink);
 
 	
 	$query = 'SELECT * FROM users WHERE login=\'' . $login . '\' AND password=\'' . md5($pwd) . '\'';

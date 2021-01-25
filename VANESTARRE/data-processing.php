@@ -1,5 +1,5 @@
 <?php
-	include 'utils.inc.php';
+	include 'functions.php';
 	session_start();
 	
 	$identifiant=$_POST['identifiant'];
@@ -39,11 +39,8 @@
 	
 	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.html">Accueil</a><br/>';
 	
-	$dbLink = mysqli_connect('mysql-bdr-projet.alwaysdata.net', '223944', '*9NWFBZ3MHMmAD7')
-		or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
-		
-	mysqli_select_db($dbLink, 'bdr-projet_bdd')
-		or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
+	$dbLink;
+	connect_bd($dbLink);
 		
 	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
 	

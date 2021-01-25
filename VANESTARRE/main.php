@@ -1,5 +1,5 @@
 <?php
-	include 'utils.inc.php';
+	include 'functions.php';
 	session_start();
 	
 	start_page('S\'inscrire');

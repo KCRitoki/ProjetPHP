@@ -1,6 +1,5 @@
 <?php
-	include 'utils.inc.php';
-	
+	include 'functions.php';
 	session_start();
 	
 	start_page('Se connecter');
