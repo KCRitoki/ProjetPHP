@@ -20,5 +20,17 @@
 		echo $_SESSION['error'] . PHP_EOL;
 		echo '<p style="color:red;">Tous les champs sont obligatoires</p>';
 	}
+	if($_SESSION['error']=='erreurMailDouble')
+	{
+		echo $_SESSION['error'] . PHP_EOL;
+		echo '<p style="color:red;">L\'adresse mail renseignée est déjà utilisée</p>';
+	}
+	if($_SESSION['error']=='erreurLoginDouble')
+	{
+		echo $_SESSION['error'] . PHP_EOL;
+		echo '<p style="color:red;">L\'identifiant utilisé est déjà pris</p>';
+	}
+	unset($_SESSION['error']);
+
 	end_page();
 ?>
