@@ -20,8 +20,7 @@
 	$expirationDates = strtotime($expirationDatef);
 	$expirationDatenew = $expirationDates+600;
 	$expirationDate = date('Y-m-d H:i:s',$expirationDatenew);
-	
-	$dbLink;
+
 	connect_bd($dbLink);
 		
 	$query = 'DELETE FROM resetPwd WHERE email=\'' . $email . '\';';

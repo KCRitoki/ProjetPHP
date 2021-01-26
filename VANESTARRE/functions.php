@@ -22,7 +22,6 @@
 // FONCTIONS CRUD MEMBRES
 	function create_member($email, $login, $password)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'INSERT INTO users VALUES (\'' . $email . '\', \'' . $login . '\', \'' . $password . '\');';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -38,7 +37,6 @@
 	
 	function read_member($login)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'SELECT * FROM users WHERE login=\'' . $login . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -59,7 +57,6 @@
 	
 	function update_member($id, $email, $login)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'UPDATE users SET email=\'' . $email . '\', login=\'' . $login . '\' WHERE id=\'' . $id . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -75,7 +72,6 @@
 	
 	function delete_member($login)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'DELETE FROM users WHERE login=\'' . $login . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -92,7 +88,6 @@
 // FONCTIONS CRUD MESSAGES
 	function create_message($message)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'INSERT INTO messages VALUES (\'' . $message . '\');';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -108,7 +103,6 @@
 	
 	function read_message($id)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'SELECT * FROM messages WHERE id=\'' . $id . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -129,7 +123,6 @@
 	
 	function update_message($id, $message, $love, $cute, $style, $swag)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'UPDATE messages SET message=\'' . $message . '\', love=\'' . $love . '\', cute=\'' . $cute . '\', style=\'' . $style . '\', swag=\'' . $swag . '\' WHERE id=\'' . $id . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))
@@ -145,7 +138,6 @@
 	
 	function delete_message($id)
 	{
-		$dbLink;
 		connect_bd($dbLink);
 		$query = 'DELETE FROM messages WHERE id=\'' . $id . '\';';
 		if(!($dbResult = mysqli_query($dbLink, $query)))

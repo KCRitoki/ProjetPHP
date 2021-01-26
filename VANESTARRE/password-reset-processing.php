@@ -23,8 +23,7 @@
 			exit();
 		}
 		unset($_SESSION['error']);
-		
-		$dbLink;
+
 		connect_bd($dbLink);
 		
 		$query = 'SELECT * FROM resetPwd WHERE token=\'' . md5(hex2bin($token)) . '\' AND exp_date>=\'' . date('Y-m-d H:i:s') . '\';';

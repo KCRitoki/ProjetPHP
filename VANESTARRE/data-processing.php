@@ -38,8 +38,7 @@
 	}
 	
 	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.html">Accueil</a><br/>';
-	
-	$dbLink;
+
 	connect_bd($dbLink);
 		
 	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
