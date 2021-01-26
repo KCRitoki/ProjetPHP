@@ -14,7 +14,7 @@
 		header('Location: main.php');
 		exit();
 	}
-	if($motdepasse!=$motdepasse2)
+	if($motdepasse!==$motdepasse2)
 	{
 		$_SESSION['error']='erreurPassword';
 		header('Location: main.php');

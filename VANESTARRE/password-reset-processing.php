@@ -16,12 +16,13 @@
 			header('Location: create-password.php?token=' . $token);
 			exit();
 		}
-		if($motdepasse!=$motdepasse2)
+		if($motdepasse!==$motdepasse2)
 		{
 			$_SESSION['error']='erreurPassword';
 			header('Location: create-password.php?token=' . $token);
 			exit();
 		}
+		unset($_SESSION['error']);
 		
 		$dbLink;
 		connect_bd($dbLink);
@@ -57,7 +58,7 @@
 			}
 			if (mysqli_num_rows($dbResult)==0)
 			{
-				echo 'Erreur de récupération d\'association';
+				echo 'Erreur de récupération d\'association, avez vous bien utilisé le mail lié à votre compte?';
 				exit();
 			}
 			else

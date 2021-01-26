@@ -57,21 +57,21 @@
 		}
 	};
 	
-//	function update_member($email, $login)
-//	{
-//		$dbLink;
-//		connect_bd($dbLink);
-//		$query = 'UPDATE users SET ';
-//		if(!($dbResult = mysqli_query($dbLink, $query)))
-//		{
-//			echo 'Erreur dans requête<br />';
-//			// Affiche le type d'erreur.
-//			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
-//			// Affiche la requête envoyée.
-//			echo 'Requête : ' . $query . '<br/>';
-//			exit();
-//		}
-//	};
+	function update_member($id, $email, $login)
+	{
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'UPDATE users SET email=\'' . $email . '\', login=\'' . $login . '\' WHERE id=\'' . $id . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
+	};
 	
 	function delete_member($login)
 	{
@@ -129,7 +129,18 @@
 	
 	function update_message($id, $message, $love, $cute, $style, $swag)
 	{
-		
+		$dbLink;
+		connect_bd($dbLink);
+		$query = 'UPDATE messages SET message=\'' . $message . '\', love=\'' . $love . '\', cute=\'' . $cute . '\', style=\'' . $style . '\', swag=\'' . $swag . '\' WHERE id=\'' . $id . '\';';
+		if(!($dbResult = mysqli_query($dbLink, $query)))
+		{
+			echo 'Erreur dans requête<br />';
+			// Affiche le type d'erreur.
+			echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+			// Affiche la requête envoyée.
+			echo 'Requête : ' . $query . '<br/>';
+			exit();
+		}
 	};
 	
 	function delete_message($id)
