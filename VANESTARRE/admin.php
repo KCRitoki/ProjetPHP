@@ -1,3 +1,16 @@
+<?php
+include 'functions.php';
+session_start();
+if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login']!== 'Vanestarre'))
+{
+	header('Location: login.php');
+	exit();
+}
+
+$output=$_SESSION['output'];
+$outputString=$_SESSION['outputString'];
+$outputName=$_SESSION['outputName'];
+?>
 <!DOCTYPE html>
 
 <html>
@@ -22,7 +35,7 @@
 		<div id="formulairesMembre">
 			<!--  Créer un membre  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="email">Entrez l'email: </label>
 						<input type="email" name="email" id="email" required>
@@ -35,22 +48,22 @@
 						<label for="password">Entrez le password: </label>
 						<input type="password" name="password" id="password" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="CMembre" />
 				</form>
 			</div>
 			<!--  Lire un membre  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="RMembre" />
 				</form>
 			</div>
 			<!--  Mettre à jour un membre  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du membre: </label>
 						<input type="number" name="id" id="id" required>
@@ -63,17 +76,17 @@
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="UMembre" />
 				</form>
 			</div>
 			<!--  Supprimer un membre  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="DMembre" />
 				</form>
 			</div>
 		</div>
@@ -83,27 +96,27 @@
 		<div id="formulairesMessages">
 			<!--  Créer un message  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="message">Entrez le message: </label>
 						<input type="text" name="message" id="message" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="CMessage" />
 				</form>
 			</div>
 			<!--  Lire un message  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="RMessage" />
 				</form>
 			</div>
 			<!--  Mettre à jour un message  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
@@ -128,22 +141,22 @@
 						<label for="swag">Entrez le nombre de "swag": </label>
 						<input type="number" name="swag" id="swag" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="UMessage" />
 				</form>
 			</div>
 			<!--  Supprimer un message  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="DMessage" />
 				</form>
 			</div>
 			<!--  Limites de love  -->
 			<div class="formulaires">
-				<form action="" method="post" class="formAdmin">
+				<form action="admin-processing.php" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
@@ -154,19 +167,79 @@
 					</div>
 					<div class="formAdmin">
 						<label for="limMax">Entrez la valeur maximale de "love": </label>
-						<input type="number" name="limMin" id="limMin" required>
+						<input type="number" name="limMax" id="limMax" required>
 					</div>
-					<input type="submit" value="Envoyer" />
+					<input type="submit" name="action" value="SetLimit" />
 				</form>
 			</div>
 		</div>
 
 
 		<div id="console">
-
-
-
-
+		
+		<?php
+		if(isset($output) && !empty($output))
+		{
+			if($outputName==='users')
+			{
+		?>
+			<table style="width:100%">
+				<tr>
+					<th>id</th>
+					<th>email</th>
+					<th>login</th>
+					<th>password</th>
+				</tr>
+				<tr>
+					<td><?php echo $output[0]?></td>
+					<td><?php echo $output[1]?></td>
+					<td><?php echo $output[2]?></td>
+					<td><?php echo $output[3]?></td>
+				</tr>
+			</table>
+		<?php
+			}
+			
+			elseif($outputName==='messages')
+			{
+		?>
+			<table style="width:100%">
+				<tr>
+					<th>id</th>
+					<th>message</th>
+					<th>love</th>
+					<th>cute</th>
+					<th>style</th>
+					<th>swag</th>
+					<th>seuil_love</th>
+					<th>limite_min</th>
+					<th>limite_max</th>
+				</tr>
+				<tr>
+					<td><?php echo $output[0]?></td>
+					<td><?php echo $output[1]?></td>
+					<td><?php echo $output[2]?></td>
+					<td><?php echo $output[3]?></td>
+					<td><?php echo $output[4]?></td>
+					<td><?php echo $output[5]?></td>
+					<td><?php echo $output[6]?></td>
+					<td><?php echo $output[7]?></td>
+					<td><?php echo $output[8]?></td>
+				</tr>
+			</table>
+		<?php
+			}
+		}
+		
+		elseif(isset($outputString) && !empty($outputString))
+		{
+			echo $outputString;
+		}
+		unset($_SESSION['output']);
+		unset($_SESSION['outputString']);
+		unset($_SESSION['outputName']);
+		?>
+		
 		</div>
 
 
