@@ -104,6 +104,46 @@ input
 
 }
 
-.shadow {
+.shadow 
+{
 	text-shadow: 2px 2px 0 black;
+}
+
+#console
+{
+	text-align: center;
+	background-color: #E2FCFB;
+	border: solid;
+	width:90%;
+	margin:0 auto;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.formulaires
+{
+	text-align: center;
+	background-color: #E2FCFB;
+	border: solid;
+	width: auto;
+	height: auto;
+	margin:0 auto;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+}
+
+#formulairesMembre
+{
+	display: flex;
+	justify-content: space-between;
+}
+
+
+#formulairesMessages
+{
+	display: flex;
+	justify-content: space-between;
 }
