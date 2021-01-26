@@ -1,5 +1,11 @@
 <?php
 include 'VANESTARRE/functions.php';
+session_start();
+if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login']!== 'Vanestarre'))
+{
+	header('Location: login.php');
+	exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +17,7 @@ include 'VANESTARRE/functions.php';
 	<style>A {text-decoration: none;} </style>
 	<body>
 		<!-- Boutons pour changer de pages -->
-		<div align="right"><p> <a href="./interface.php">Interface    </a> <a href="./profil.php">Profil    </a><a href="./index.html">Déconnexion</a></p></div>
+		<div align="right"><p> <a href="./interface.php">Interface    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
 
 		<!-- Logo Vanestarre -->
 		<div id="logo"><img src="./images/Vanestarre.png"></div>

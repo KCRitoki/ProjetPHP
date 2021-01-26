@@ -20,7 +20,7 @@
 	$expirationDates = strtotime($expirationDatef);
 	$expirationDatenew = $expirationDates+600;
 	$expirationDate = date('Y-m-d H:i:s',$expirationDatenew);
-
+	
 	connect_bd($dbLink);
 		
 	$query = 'DELETE FROM resetPwd WHERE email=\'' . $email . '\';';
@@ -55,7 +55,7 @@
 		echo 'Vérifiez votre boite mail, si vous ne le trouvez pas cherchez dans le dossier spam';
 	}
 	
-	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.html">Accueil</a><br/>';
+	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.php">Accueil</a><br/>';
 	
 	end_page();
 ?>

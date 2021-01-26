@@ -19,9 +19,62 @@
 		$_SESSION['error']='erreurPassword';
 		header('Location: main.php');
 		exit();
-	}	
+	}
 
 	start_page('Inscription terminée');
+	
+	
+	connect_bd($dbLink);
+	
+	$query = 'SELECT * FROM users WHERE email=\'' . $email . '\';';
+	
+	if(!($dbResult = mysqli_query($dbLink, $query)))
+	{
+		echo 'Erreur dans requête<br />';
+		// Affiche le type d'erreur.
+		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+		// Affiche la requête envoyée.
+		echo 'Requête : ' . $query . '<br/>';
+		exit();
+	}
+	if(mysqli_num_rows($dbResult)>=1)
+	{
+		$_SESSION['error']='erreurMailDouble';
+		header('Location: main.php');
+		exit();
+	}
+	
+	$query = 'SELECT * FROM users WHERE login=\'' . $identifiant . '\';';
+	
+	if(!($dbResult = mysqli_query($dbLink, $query)))
+	{
+		echo 'Erreur dans requête<br />';
+		// Affiche le type d'erreur.
+		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+		// Affiche la requête envoyée.
+		echo 'Requête : ' . $query . '<br/>';
+		exit();
+	}
+	if(mysqli_num_rows($dbResult)>=1)
+	{
+		$_SESSION['error']='erreurLoginDouble';
+		header('Location: main.php');
+		exit();
+	}
+	
+	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
+	
+	if(!($dbResult = mysqli_query($dbLink, $query)))
+	{
+		echo 'Erreur dans requête<br />';
+		// Affiche le type d'erreur.
+		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+		// Affiche la requête envoyée.
+		echo 'Requête : ' . $query . '<br/>';
+		exit();
+	}
+	
+	echo 'Bonjour, ' . $identifiant . '<br/>Votre inscription a bien été enregistrée, merci.<br/>';
 	
 	if($action == 'mailer')
 	{
@@ -37,23 +90,7 @@
 		echo '<br/><strong>Bouton non géré !</strong><br/>';
 	}
 	
-	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.html">Accueil</a><br/>';
-
-	connect_bd($dbLink);
-		
-	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
-	
-	if(!($dbResult = mysqli_query($dbLink, $query)))
-	{
-		echo 'Erreur dans requête<br />';
-		// Affiche le type d'erreur.
-		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
-		// Affiche la requête envoyée.
-		echo 'Requête : ' . $query . '<br/>';
-		exit();
-	}
-	
-	echo 'Bonjour, ' . $identifiant . '<br/>Votre inscription a bien été enregistrée, merci.<br/>';
+	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.php">Accueil</a><br/>';
 	
 	end_page();
 ?>

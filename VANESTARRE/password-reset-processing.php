@@ -23,7 +23,7 @@
 			exit();
 		}
 		unset($_SESSION['error']);
-
+		
 		connect_bd($dbLink);
 		
 		$query = 'SELECT * FROM resetPwd WHERE token=\'' . md5(hex2bin($token)) . '\' AND exp_date>=\'' . date('Y-m-d H:i:s') . '\';';
@@ -93,7 +93,8 @@
 	}
 	else
 	{
-		header('Location: index.html');
+		header('Location: index.php');
+		exit();
 	}
 	
 	end_page();

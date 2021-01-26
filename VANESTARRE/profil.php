@@ -3,6 +3,7 @@
 	if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 	{
 		header('Location: login.php');
+		exit();
 	}
 ?>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@
 	<style>A {text-decoration: none;} </style>
 
 	<body>
-		<div align="right"><p><a href="connected.php">Accueil    </a><a href="./index.html">Déconnexion</a></div>
+		<div align="right"><p><a href="./index.php">Accueil    </a><a href="./index.php?logout=true">Déconnexion</a></div>
 		<div id="logo"><img src="./images/Vanestarre.png"></div>
 		<h1 class="shadow">Profil</h1>
 		<div id="profile">

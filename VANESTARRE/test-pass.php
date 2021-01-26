@@ -11,7 +11,7 @@
 		header('Location: login.php');
 		exit();
 	}
-
+	
 	connect_bd($dbLink);
 
 	
@@ -37,6 +37,6 @@
 	$row=mysqli_fetch_assoc($dbResult);
 	$_SESSION['mail']=$row['email'];
 	
-	header('Location: connected.php');
+	header('Location: index.php');
 	exit();
 ?>
