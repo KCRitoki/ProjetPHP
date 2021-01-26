@@ -7,7 +7,7 @@
     connect_bd($dbLink);
 
     // Insertion du message
-    $query = 'INSERT INTO messages (message) VALUES (\'' . $message . '\')';
+    $query = 'INSERT INTO messages (message, seuil_love) VALUES (\'' . $message . '\', \'' . rand(5,10) . '\');';
 
     if(!($dbResult = mysqli_query($dbLink, $query)))
     {
