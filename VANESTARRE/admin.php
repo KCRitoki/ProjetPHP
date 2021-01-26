@@ -22,62 +22,58 @@
 		<div id="formulairesMembre">
 			<!--  Créer un membre  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="email">Entrez l'email: </label>
 						<input type="email" name="email" id="email" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
 						<label for="password">Entrez le password: </label>
 						<input type="password" name="password" id="password" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Lire un membre  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Mettre à jour un membre  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du membre: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
 						<label for="email">Entrez l'email: </label>
 						<input type="email" name="email" id="email" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Supprimer un membre  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="login">Entrez le login: </label>
 						<input type="text" name="login" id="login" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 		</div>
@@ -87,68 +83,80 @@
 		<div id="formulairesMessages">
 			<!--  Créer un message  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="message">Entrez le message: </label>
 						<input type="text" name="message" id="message" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Lire un message  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Mettre à jour un message  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
 						<label for="message">Entrez le message: </label>
 						<input type="text" name="message" id="message" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
-						<label for="id">Entrez le nombre de "love": </label>
+						<label for="love">Entrez le nombre de "love": </label>
 						<input type="number" name="love" id="love" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
-						<label for="id">Entrez le nombre de "cute": </label>
+						<label for="cute">Entrez le nombre de "cute": </label>
 						<input type="number" name="cute" id="cute" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
-						<label for="id">Entrez le nombre de "style": </label>
+						<label for="style">Entrez le nombre de "style": </label>
 						<input type="number" name="style" id="style" required>
 					</div>
-				</form>
-				<form action="" method="get" class="formAdmin">
 					<div class="formAdmin">
-						<label for="id">Entrez le nombre de "swag": </label>
+						<label for="swag">Entrez le nombre de "swag": </label>
 						<input type="number" name="swag" id="swag" required>
 					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 			<!--  Supprimer un message  -->
 			<div class="formulaires">
-				<form action="" method="get" class="formAdmin">
+				<form action="" method="post" class="formAdmin">
 					<div class="formAdmin">
 						<label for="id">Entrez l'id du message: </label>
 						<input type="number" name="id" id="id" required>
 					</div>
+					<input type="submit" value="Envoyer" />
+				</form>
+			</div>
+			<!--  Limites de love  -->
+			<div class="formulaires">
+				<form action="" method="post" class="formAdmin">
+					<div class="formAdmin">
+						<label for="id">Entrez l'id du message: </label>
+						<input type="number" name="id" id="id" required>
+					</div>
+					<div class="formAdmin">
+						<label for="limMin">Entrez la valeur minimale de "love": </label>
+						<input type="number" name="limMin" id="limMin" required>
+					</div>
+					<div class="formAdmin">
+						<label for="limMax">Entrez la valeur maximale de "love": </label>
+						<input type="number" name="limMin" id="limMin" required>
+					</div>
+					<input type="submit" value="Envoyer" />
 				</form>
 			</div>
 		</div>
