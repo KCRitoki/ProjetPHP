@@ -1,5 +1,5 @@
 <?php
-    include 'VANESTARRE/functions.php';
+    include '../functions.php';
     //récupération du message
     $message = $_POST['message'];
 
@@ -20,5 +20,5 @@
     }
 
     // Redirection
-    header('Location: connected_vanestarre.php');
+    header('Location: ../index.php');
 
