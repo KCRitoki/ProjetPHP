@@ -1,5 +1,5 @@
 <?php
-include 'VANESTARRE/functions.php';
+include 'functions.php';
 session_start();
 if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 {
