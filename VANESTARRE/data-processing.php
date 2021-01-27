@@ -2,11 +2,13 @@
 	include 'functions.php';
 	session_start();
 	
-	$identifiant=$_POST['identifiant'];
-	$email=$_POST['email'];
-	$motdepasse=$_POST['motdepasse'];
-	$motdepasse2=$_POST['motdepasse2'];
-	$action=$_POST['action'];
+	connect_bd($dbLink);
+	
+	$identifiant=mysqli_real_escape_string($dbLink, $_POST['identifiant']);
+	$email=mysqli_real_escape_string($dbLink, $_POST['email']);
+	$motdepasse=mysqli_real_escape_string($dbLink, $_POST['motdepasse']);
+	$motdepasse2=mysqli_real_escape_string($dbLink, $_POST['motdepasse2']);
+	$action=mysqli_real_escape_string($dbLink, $_POST['action']);
 	
 	if(empty($identifiant) || empty($email) || empty($motdepasse) || empty($motdepasse2))
 	{
@@ -24,19 +26,19 @@
 	start_page('Inscription terminée');
 	
 	
-	connect_bd($dbLink);
+	$query = 'SELECT * FROM users WHERE email=?;';
 	
-	$query = 'SELECT * FROM users WHERE email=\'' . $email . '\';';
-	
-	if(!($dbResult = mysqli_query($dbLink, $query)))
+	$stmt = mysqli_stmt_init($dbLink);
+	if(!mysqli_stmt_prepare($stmt, $query))
 	{
-		echo 'Erreur dans requête<br />';
-		// Affiche le type d'erreur.
-		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
-		// Affiche la requête envoyée.
-		echo 'Requête : ' . $query . '<br/>';
-		exit();
+		echo 'Une erreur de statement s\'est produite';
 	}
+	else{
+	mysqli_stmt_bind_param($stmt, 's', $email);
+	mysqli_stmt_execute($stmt);
+	$dbResult=mysqli_stmt_get_result($stmt);
+	}
+	
 	if(mysqli_num_rows($dbResult)>=1)
 	{
 		$_SESSION['error']='erreurMailDouble';
@@ -44,17 +46,19 @@
 		exit();
 	}
 	
-	$query = 'SELECT * FROM users WHERE login=\'' . $identifiant . '\';';
+	$query = 'SELECT * FROM users WHERE login=?;';
 	
-	if(!($dbResult = mysqli_query($dbLink, $query)))
+	$stmt = mysqli_stmt_init($dbLink);
+	if(!mysqli_stmt_prepare($stmt, $query))
 	{
-		echo 'Erreur dans requête<br />';
-		// Affiche le type d'erreur.
-		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
-		// Affiche la requête envoyée.
-		echo 'Requête : ' . $query . '<br/>';
-		exit();
+		echo 'Une erreur de statement s\'est produite';
 	}
+	else{
+	mysqli_stmt_bind_param($stmt, 's', $identifiant);
+	mysqli_stmt_execute($stmt);
+	$dbResult=mysqli_stmt_get_result($stmt);
+	}
+	
 	if(mysqli_num_rows($dbResult)>=1)
 	{
 		$_SESSION['error']='erreurLoginDouble';
@@ -62,16 +66,16 @@
 		exit();
 	}
 	
-	$query = 'INSERT INTO users (email, login, password) VALUES (\'' . $email . '\', \'' . $identifiant . '\', \'' . md5($motdepasse) . '\')';
+	$query = 'INSERT INTO users (email, login, password) VALUES (?, ?, ?)';
 	
-	if(!($dbResult = mysqli_query($dbLink, $query)))
+	$stmt = mysqli_stmt_init($dbLink);
+	if(!mysqli_stmt_prepare($stmt, $query))
 	{
-		echo 'Erreur dans requête<br />';
-		// Affiche le type d'erreur.
-		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
-		// Affiche la requête envoyée.
-		echo 'Requête : ' . $query . '<br/>';
-		exit();
+		echo 'Une erreur de statement s\'est produite';
+	}
+	else{
+	mysqli_stmt_bind_param($stmt, 'sss', $email, $identifiant, md5($motdepasse));
+	mysqli_stmt_execute($stmt);
 	}
 	
 	echo 'Bonjour, ' . $identifiant . '<br/>Votre inscription a bien été enregistrée, merci.<br/>';
