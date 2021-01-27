@@ -36,7 +36,7 @@
         <?php
             //erreur message vide
             if ($_SESSION['errormsg'] == 'empty') {
-                echo '<p style="color:red;">Vous ne pouvez pas poster un message vide</p>';
+                echo '<p style="color:red;">Vous ne pouvez pas poster de message vide</p>';
             }
         ?>
 
