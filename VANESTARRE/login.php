@@ -35,6 +35,8 @@
     </head>
 <body>
 
+	<div align="right"><p> <a href="./index.php">Accueil</a></p></div>
+
 	<h1 class="shadow">Connectez vous</h1>
 
 	<div class="login">
