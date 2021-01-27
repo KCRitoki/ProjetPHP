@@ -179,6 +179,8 @@ $outputName=$_SESSION['outputName'];
 						<label for="nbPosts">Entrez le nombre de posts par page: </label>
 						<input type="number" name="nbPost" id="nbPost" required>
 					</div>
+					
+					<input type="submit" name="action" value="SetLimit" />
 				</form>
 			</div>
 		</div>
