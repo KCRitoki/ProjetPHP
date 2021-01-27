@@ -1,15 +1,7 @@
 <?php
     include 'VANESTARRE/functions.php';
-    session_start();
-
     //récupération du message
     $message = $_POST['message'];
-
-    //vérification du message
-    if (empty($message)){
-        $_SESSION['errormsg'] = 'empty';
-        header('Location: connected-vanestarre.php');
-    }
 
     // Connexion à la base de données
     connect_bd($dbLink);
@@ -28,5 +20,5 @@
     }
 
     // Redirection
-    header('Location: connected-vanestarre.php');
+    header('Location: connected_vanestarre.php');
 

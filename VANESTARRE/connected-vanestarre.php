@@ -17,7 +17,7 @@
 	<style>A {text-decoration: none;} </style>
 	<body>
 		<!-- Boutons pour changer de pages -->
-		<div align="right"><p> <a href="./interface.php">Interface    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
+		<div align="right"><p> <a href="./admin.php">Interface administrateur    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
 
 		<!-- Logo Vanestarre -->
 		<div id="logo"><img src="./images/Vanestarre.png"></div>
@@ -55,7 +55,7 @@
             connect_bd($dbLink);
 
             // Récupération des 10 derniers messages
-            $query = 'SELECT * FROM messages ORDER BY ID DESC';
+            $query = 'SELECT * FROM messages ORDER BY id DESC';
             $result = mysqli_query($dbLink, $query);
         ?>
 
@@ -66,7 +66,7 @@
                 while ($row=mysqli_fetch_array($result)){
                     echo '<div id="post">' .
                             '<p>' . $row['message'] . '</p>' .
-                            '<form action="Messages&Reactions/post-reaction.php?id= '.$row['ID'].' " method="post">' .
+                            '<form action="Messages&Reactions/post-reaction.php?id= '.$row['id'].' " method="post">' .
                             '<button type="submit" name="reaction" value="love"> &#128151 <br/>' . $row['love'] . '</button>' .
                             '<button type="submit" name="reaction" value="cute"> &#128525 <br/>' . $row['cute'] . '</button>' .
                             '<button type="submit" name="reaction" value="style"> &#128559 <br/>' . $row['style'] . '</button>' .
