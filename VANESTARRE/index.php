@@ -13,7 +13,7 @@ if (isset($_SESSION['suid']) || !empty($_SESSION['suid']))
 {
 	if ($_SESSION['login']=== 'Vanestarre')
 	{
-		header('Location: connected_vanestarre.php');
+		header('Location: connected-vanestarre.php');
 		exit();
 	}
 	header('Location: connected.php');

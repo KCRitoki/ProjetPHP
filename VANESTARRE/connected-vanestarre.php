@@ -1,11 +1,11 @@
 <?php
-include 'functions.php';
-session_start();
-if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login']!== 'Vanestarre'))
-{
-	header('Location: login.php');
-	exit();
-}
+    include 'functions.php';
+    session_start();
+    if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login']!== 'Vanestarre'))
+    {
+        header('Location: login.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,10 +29,16 @@ if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login
 		<div id="search" align="center">
 			<label for="site-search">Recherche par tag:</label>
 			<input type="search" id="tag-search" name="q" placeholder="βtag" pattern="β[A-z]">
-
 			<button>Recherche</button>
 			<span class="validity"></span>
 		</div> <br>
+
+        <?php
+            //erreur message vide
+            if ($_SESSION['errormsg'] == 'empty') {
+                echo '<p style="color:red;">Vous ne pouvez pas poster un message vide</p>';
+            }
+        ?>
 
 		<!-- Boite de texte d'envoi de messages -->
 		<div id="post" align="center">
@@ -56,7 +62,7 @@ if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login
 		<!-- Les différents posts de Vanestarre -->
 		<div id="vaneline">
             <?php
-                //affichage des posts
+                // affichage des posts
                 while ($row=mysqli_fetch_array($result)){
                     echo '<div id="post">' .
                             '<p>' . $row['message'] . '</p>' .
@@ -74,4 +80,3 @@ if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login
 		</div>
 	</body>
 </html>
-

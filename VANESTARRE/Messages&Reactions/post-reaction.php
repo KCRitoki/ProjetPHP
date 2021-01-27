@@ -62,5 +62,5 @@
             break;
     }
     // Redirection
-    header('Location: connected_vanestarre.php');
+    header('Location: connected-vanestarre.php');
 
