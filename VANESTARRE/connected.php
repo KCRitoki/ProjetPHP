@@ -47,6 +47,7 @@ $bitcoin=$_SESSION['bitcoin'];
             // Connexion à la base de données
             connect_bd($dbLink);
 
+			// Récupération du nombre de posts max voulus par page
 			$query = 'SELECT nbPost FROM pages';
 			$result = mysqli_query($dbLink, $query);
 			$row=mysqli_fetch_array($result);

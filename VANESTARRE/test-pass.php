@@ -36,6 +36,7 @@
 	$_SESSION['login']=$login;
 	$row=mysqli_fetch_assoc($dbResult);
 	$_SESSION['mail']=$row['email'];
+	$_SESSION['id']=$row['id'];
 	
 	header('Location: index.php');
 	exit();
