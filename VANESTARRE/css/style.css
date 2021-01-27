@@ -135,6 +135,20 @@ input
 
 }
 
+.login
+{
+	text-align: center;
+	background-color: #E2FCFB;
+	border: solid;
+	width: 40%;
+	height: auto;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+}
+
 #formulairesMembre
 {
 	display: flex;
