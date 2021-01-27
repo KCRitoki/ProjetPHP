@@ -22,7 +22,7 @@ $outputName=$_SESSION['outputName'];
 	<style>A {text-decoration: none;} </style>
 	<body>
 		<!-- Boutons pour changer de pages -->
-		<div align="right"><p> <a href="./index.php">Accueil    </a> <a href="./profil.php">Profil    </a><a href="./index.php">Déconnexion</a></p></div>
+		<div align="right"><p> <a href="./index.php">Accueil    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
 
 		<!-- Logo Vanestarre -->
 		<div id="logo"><img src="./images/Vanestarre.png"></div>
