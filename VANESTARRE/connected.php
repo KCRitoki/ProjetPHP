@@ -39,6 +39,8 @@ $bitcoin=$_SESSION['bitcoin'];
 			</div>
 		<?php
 			}
+			unset($bitcoin);
+			unset($_SESSION['bitcoin'];
 		?>
 		
         <?php
