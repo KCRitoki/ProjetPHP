@@ -145,6 +145,44 @@
             }
 			$_SESSION['outputString']='Mise à jour des limites effectuée.';
             break;
+		case 'SetnbPost':
+			$query = 'SELECT * FROM pages';
+
+            if (!($dbResult = mysqli_query($dbLink, $query))) {
+                echo 'Erreur dans requête<br />';
+                // Affiche le type d'erreur.
+                echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+                // Affiche la requête envoyée.
+                echo 'Requête : ' . $query . '<br/>';
+                exit();
+            }
+			if(mysqli_num_rows($dbResult)<1)
+			{
+				$query = 'INSERT INTO pages (nbPost) VALUES (\'' . $_POST['nbPost'] . '\');';
+
+				if (!($dbResult = mysqli_query($dbLink, $query))) {
+					echo 'Erreur dans requête<br />';
+					// Affiche le type d'erreur.
+					echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+					// Affiche la requête envoyée.
+					echo 'Requête : ' . $query . '<br/>';
+					exit();
+				}
+			}
+			else{
+				$query = 'UPDATE pages SET nbPost=\'' . $_POST['nbPost'] . '\';';
+
+				if (!($dbResult = mysqli_query($dbLink, $query))) {
+					echo 'Erreur dans requête<br />';
+					// Affiche le type d'erreur.
+					echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+					// Affiche la requête envoyée.
+					echo 'Requête : ' . $query . '<br/>';
+					exit();
+				}
+			}
+			$_SESSION['outputString']='Mise à jour de la limite de posts effectuée.';
+			break;
     }
 	header('Location: admin.php');
 	exit();

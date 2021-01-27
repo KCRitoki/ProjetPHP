@@ -47,8 +47,13 @@ $bitcoin=$_SESSION['bitcoin'];
             // Connexion à la base de données
             connect_bd($dbLink);
 
-            // Récupération des 10 derniers messages
-            $query = 'SELECT * FROM messages ORDER BY id DESC';
+			$query = 'SELECT nbPost FROM pages';
+			$result = mysqli_query($dbLink, $query);
+			$row=mysqli_fetch_array($result);
+			$nbPost=$row['nbPost'];
+			
+            // Récupération des $nbPost derniers messages
+            $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
             $result = mysqli_query($dbLink, $query);
         ?>
 

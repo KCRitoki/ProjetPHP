@@ -180,7 +180,7 @@ $outputName=$_SESSION['outputName'];
 						<input type="number" name="nbPost" id="nbPost" required>
 					</div>
 					
-					<input type="submit" name="action" value="SetLimit" />
+					<input type="submit" name="action" value="SetnbPost" />
 				</form>
 			</div>
 		</div>
