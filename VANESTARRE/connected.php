@@ -34,7 +34,9 @@ $bitcoin=$_SESSION['bitcoin'];
 			if($bitcoin===true)
 			{
 		?>
-			
+			<div id="bitcoin">
+				<p> Félicitations, vous venez de gagner l'opportunité de donner 10 bitcoins (252 050,20€) à la grande Vanestarre </p>
+			</div>
 		<?php
 			}
 		?>
