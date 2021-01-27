@@ -20,5 +20,5 @@
     }
 
     // Redirection
-    header('Location: connected-vanestarre.php');
+    header('Location: ../connected-vanestarre.php');
 
