@@ -14,6 +14,10 @@
 	</head>
 	<style>A {text-decoration: none;} </style>
 	<body>
+
+		<div align="right"><p> <a href="./index.php">Accueil</a></p></div>
+
+	
 		<form action="data-processing.php" method="post" class="login">
 			E-mail<br/><input type="text" name="email"/><br/>
 			Identifiant<br/><input type="text" name="identifiant"/><br/>
