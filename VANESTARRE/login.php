@@ -1,7 +1,9 @@
 <?php
 	include 'functions.php';
 	session_start();
-	
+?>
+
+<?php
 	start_page('Se connecter');
 	
 	if($_SESSION['error']=='erreurauth')
@@ -20,17 +22,49 @@
 	}
 	unset($_SESSION['error']);
 	unset($_SESSION['resetpwd']);
+?>
 	
-	echo '<form action="test-pass.php" method="POST">
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Vanéstarre</title>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+<body>
+
+	<h1 class="shadow">Connectez vous</h1>
+
+	<div class="login">
+        <form action="test-pass.php" method="POST">
 			Login<br/><input type="text" name="login"/><br/>
 			Mot de passe<br/><input type="password" name="pwd"/><br/>
 			<input type="submit" name="action" value="ok"/><br/>
-			</form>';
-	echo '<br/>Pas encore inscrit? <a href="main.php">Cliquez ici</a><br/>';
-	echo 'Mot de passe oublié? Entrez votre email ci-dessous<br/>';
-	echo '<br/><form action="password-reset.php" method="POST">
+		</form>
+	</div>
+
+	<h1 class="shadow">Inscrivez vous</h1>
+
+	<div class="login">
+		<br/>Pas encore inscrit? <a href="main.php">Cliquez ici</a><br/>
+	</div>
+
+	<h1 class="shadow">Mot de passe oublié</h1>
+
+	<div class="login">
+		Mot de passe oublié? Entrez votre email ci-dessous<br/>
+		<br/><form action="password-reset.php" method="POST">
 			<br/><input type="text" name="email"/><br/>
 			<input type="submit" name="action" value="reset"/><br/>
-			</form>';
+		</form>
+	</div>
+
+</body>
+
+</html>
+
+<?php
 	end_page();
 ?>
