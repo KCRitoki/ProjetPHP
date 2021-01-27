@@ -6,6 +6,8 @@ if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 	header('Location: login.php');
 	exit();
 }
+
+$bitcoin=$_SESSION['bitcoin'];
 ?>
 <!DOCTYPE html>
 
@@ -28,6 +30,15 @@ if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 			<span class="validity"></span>
 		</div>
 
+		<?php
+			if($bitcoin===true)
+			{
+		?>
+			
+		<?php
+			}
+		?>
+		
         <?php
             // Connexion à la base de données
             connect_bd($dbLink);

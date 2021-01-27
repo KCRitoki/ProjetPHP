@@ -1,5 +1,11 @@
 <?php
     include '../functions.php';
+	session_start();
+	if ((!isset($_SESSION['suid']) || empty($_SESSION['suid'])) || ($_SESSION['login']!== 'Vanestarre'))
+    {
+        header('Location: login.php');
+        exit();
+    }
     //récupération du message
     $message = $_POST['message'];
 

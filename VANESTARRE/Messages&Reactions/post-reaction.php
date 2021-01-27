@@ -1,5 +1,11 @@
 <?php
     include '../functions.php';
+	session_start();
+	if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
+	{
+		header('Location: login.php');
+		exit();
+	}
     //recuperation des variables
     $reaction = $_POST['reaction'];
     $id = $_GET['id'];
@@ -20,6 +26,33 @@
                 echo 'Requête : ' . $query . '<br/>';
                 exit();
             }
+			
+			$query = "SELECT seuil_love FROM messages";
+
+            if (!($dbResult = mysqli_query($dbLink, $query))) {
+                echo 'Erreur dans requête<br />';
+                // Affiche le type d'erreur.
+                echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+                // Affiche la requête envoyée.
+                echo 'Requête : ' . $query . '<br/>';
+                exit();
+            }
+			$n=$dbResult;
+			
+			$query = "SELECT love FROM messages";
+
+            if (!($dbResult = mysqli_query($dbLink, $query))) {
+                echo 'Erreur dans requête<br />';
+                // Affiche le type d'erreur.
+                echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+                // Affiche la requête envoyée.
+                echo 'Requête : ' . $query . '<br/>';
+                exit();
+            }
+			if(mysqli_num_rows($dbResult)>=$n)
+			{
+				$_SESSION['bitcoin']=true;
+			}
             break;
 
         case 'cute':
