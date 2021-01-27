@@ -172,6 +172,15 @@ $outputName=$_SESSION['outputName'];
 					<input type="submit" name="action" value="SetLimit" />
 				</form>
 			</div>
+			<!--  Limites de posts par page  -->
+			<div class="formulaires">
+				<form action="admin-processing.php" method="post" class="formAdmin">
+					<div class="formAdmin">
+						<label for="nbPosts">Entrez le nombre de posts par page: </label>
+						<input type="number" name="nbPost" id="nbPost" required>
+					</div>
+				</form>
+			</div>
 		</div>
 
 
