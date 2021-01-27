@@ -1,5 +1,5 @@
 <?php
-    include 'VANESTARRE/functions.php';
+    include '../functions.php';
     //recuperation des variables
     $reaction = $_POST['reaction'];
     $id = $_GET['id'];

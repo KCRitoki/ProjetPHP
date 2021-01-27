@@ -1,5 +1,5 @@
 <?php
-    include 'VANESTARRE/functions.php';
+    include '../functions.php';
     //récupération du message
     $message = $_POST['message'];
 
