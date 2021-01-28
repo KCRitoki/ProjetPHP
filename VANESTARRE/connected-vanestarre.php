@@ -85,8 +85,20 @@ $page_actuelle=$_GET['page'];
                 $offset = $nbPost*$page_actuelle;
                 $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
                 $result = mysqli_query($dbLink, $query);
+                $row=mysqli_fetch_array($result);
             }
         ?>
+
+        <?php
+        //upload de fichiers
+        echo '<form enctype="multipart/form-data" action="Messages&Reactions/post-fichier.php?idmsg= '.$row['ID'].' " method="post">' .
+            '<input type="hidden" name="MAX_FILE_SIZE" value="500000" />' .
+            'Envoyez ce fichier :' . '<input name="file" type="file" />' .
+            '<input type="submit" value="Envoyer le fichier" />' . '<br/>' .
+            '</form>' . '</br>';
+
+        ?>
+
         <!-- Les différents posts de Vanestarre -->
         <div id="vaneline">
             <?php
