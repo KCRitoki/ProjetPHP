@@ -34,7 +34,7 @@ $page_actuelle=$_GET['page'];
 
 	<body>
 		<div align="right"><p><a href="http://bdr-projet.alwaysdata.net/login.php">Connexion</a>/<a href="http://bdr-projet.alwaysdata.net/inscription.php">Inscription</a></p></div>
-		<div id="logo"><img src="./images/Vanestarre.png"></div>
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
 		<h1 class="shadow">Vanéstarre</h1>
 		<div id="search" align="center">
 			<label for="site-search">Recherche par tag:</label>

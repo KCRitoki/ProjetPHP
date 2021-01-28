@@ -8,6 +8,8 @@ if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 }
 
 $bitcoin=$_SESSION['bitcoin'];
+
+$page_actuelle=$_GET['page'];
 ?>
 <!DOCTYPE html>
 
@@ -20,7 +22,7 @@ $bitcoin=$_SESSION['bitcoin'];
 	<style>A {text-decoration: none;} </style>
 	<body>
 		<div align="right"><p><a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></div>
-		<div id="logo"><img src="./images/Vanestarre.png"></div>
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
 		<h1 class="shadow">Vanéstarre</h1>
 		<div id="search" align="center">
 			<label for="site-search">Recherche par tag:</label>
@@ -42,8 +44,7 @@ $bitcoin=$_SESSION['bitcoin'];
 			unset($bitcoin);
 			unset($_SESSION['bitcoin']);
 		?>
-		
-        <?php
+		<?php
             // Connexion à la base de données
             connect_bd($dbLink);
 
@@ -53,10 +54,36 @@ $bitcoin=$_SESSION['bitcoin'];
 			$row=mysqli_fetch_array($result);
 			$nbPost=$row['nbPost'];
 			
+			// Récupération du nombre de posts total
+			$query = 'SELECT COUNT(*) AS nb_messages FROM messages';
+			$result = mysqli_query($dbLink, $query);
+			$row=mysqli_fetch_array($result);
+			$nbPostTotal=$row['nb_messages'];
+			
+			$nbPages = ceil($nbPostTotal/$nbPost);
+			
             // Récupération des $nbPost derniers messages
-            $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-            $result = mysqli_query($dbLink, $query);
+            //$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
+            //$result = mysqli_query($dbLink, $query);
+			
+			if(!isset($page_actuelle) || empty($page_actuelle))
+			{
+				$page_actuelle=0;
+			}
+			
+			if($page_actuelle===0)
+			{
+				// Récupération des $nbPost derniers messages PREMIERE PAGE
+				$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
+				$result = mysqli_query($dbLink, $query);
+			}else{
+				// Récupération des $nbPost derniers messages AUTRE PAGE
+				$offset = $nbPost*$page_actuelle;
+				$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
+				$result = mysqli_query($dbLink, $query);
+			}
         ?>
+
 
         <!-- Les différents posts de Vanestarre -->
         <div id="vaneline">
@@ -76,6 +103,19 @@ $bitcoin=$_SESSION['bitcoin'];
                          '</div>';
                 }
             ?>
+
+            <div id="buttonPage">
+
+            	<?php if ($page_actuelle != 0) { ?>
+            		<a href="connected.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png"> </a>
+            	<?php } ?>
+
+				<?php if ($page_actuelle != $nbPages-1) { ?>
+            		<a href="connected.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png"> </a>
+            	<?php } ?>
+
+            </div>
+
         </div>
 	</body>
 </html>

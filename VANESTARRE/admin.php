@@ -22,13 +22,83 @@ $outputName=$_SESSION['outputName'];
 	<style>A {text-decoration: none;} </style>
 	<body>
 		<!-- Boutons pour changer de pages -->
-		<div align="right"><p> <a href="./index.php">Accueil    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
+		<div align="right"><p> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
 
 		<!-- Logo Vanestarre -->
-		<div id="logo"><img src="./images/Vanestarre.png"></div>
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
 
 		<!-- Titre de la page -->
 		<h1 class="shadow">Administration</h1>
+
+
+		<!-- Console -->
+
+		<div id="console">
+		
+		<?php
+		if(isset($output) && !empty($output))
+		{
+			if($outputName==='users')
+			{
+		?>
+			<table style="width:100%">
+				<tr>
+					<th>id</th>
+					<th>email</th>
+					<th>login</th>
+					<th>password</th>
+				</tr>
+				<tr>
+					<td><?php echo $output[0]?></td>
+					<td><?php echo $output[1]?></td>
+					<td><?php echo $output[2]?></td>
+					<td><?php echo $output[3]?></td>
+				</tr>
+			</table>
+		<?php
+			}
+			
+			elseif($outputName==='messages')
+			{
+		?>
+			<table style="width:100%">
+				<tr>
+					<th>id</th>
+					<th>message</th>
+					<th>love</th>
+					<th>cute</th>
+					<th>style</th>
+					<th>swag</th>
+					<th>seuil_love</th>
+					<th>limite_min</th>
+					<th>limite_max</th>
+				</tr>
+				<tr>
+					<td><?php echo $output[0]?></td>
+					<td><?php echo $output[1]?></td>
+					<td><?php echo $output[2]?></td>
+					<td><?php echo $output[3]?></td>
+					<td><?php echo $output[4]?></td>
+					<td><?php echo $output[5]?></td>
+					<td><?php echo $output[6]?></td>
+					<td><?php echo $output[7]?></td>
+					<td><?php echo $output[8]?></td>
+				</tr>
+			</table>
+		<?php
+			}
+		}
+		
+		elseif(isset($outputString) && !empty($outputString))
+		{
+			echo $outputString;
+		}
+		unset($_SESSION['output']);
+		unset($_SESSION['outputString']);
+		unset($_SESSION['outputName']);
+		?>
+		
+		</div>
 
 		<!-- Formulaires -->	
 		<h2>Gérer les Membres</h2>
@@ -186,72 +256,7 @@ $outputName=$_SESSION['outputName'];
 		</div>
 
 
-		<div id="console">
-		
-		<?php
-		if(isset($output) && !empty($output))
-		{
-			if($outputName==='users')
-			{
-		?>
-			<table style="width:100%">
-				<tr>
-					<th>id</th>
-					<th>email</th>
-					<th>login</th>
-					<th>password</th>
-				</tr>
-				<tr>
-					<td><?php echo $output[0]?></td>
-					<td><?php echo $output[1]?></td>
-					<td><?php echo $output[2]?></td>
-					<td><?php echo $output[3]?></td>
-				</tr>
-			</table>
-		<?php
-			}
-			
-			elseif($outputName==='messages')
-			{
-		?>
-			<table style="width:100%">
-				<tr>
-					<th>id</th>
-					<th>message</th>
-					<th>love</th>
-					<th>cute</th>
-					<th>style</th>
-					<th>swag</th>
-					<th>seuil_love</th>
-					<th>limite_min</th>
-					<th>limite_max</th>
-				</tr>
-				<tr>
-					<td><?php echo $output[0]?></td>
-					<td><?php echo $output[1]?></td>
-					<td><?php echo $output[2]?></td>
-					<td><?php echo $output[3]?></td>
-					<td><?php echo $output[4]?></td>
-					<td><?php echo $output[5]?></td>
-					<td><?php echo $output[6]?></td>
-					<td><?php echo $output[7]?></td>
-					<td><?php echo $output[8]?></td>
-				</tr>
-			</table>
-		<?php
-			}
-		}
-		
-		elseif(isset($outputString) && !empty($outputString))
-		{
-			echo $outputString;
-		}
-		unset($_SESSION['output']);
-		unset($_SESSION['outputString']);
-		unset($_SESSION['outputName']);
-		?>
-		
-		</div>
+
 
 
 
