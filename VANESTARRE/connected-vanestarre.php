@@ -42,6 +42,8 @@ $page_actuelle=$_GET['page'];
             <form action="Messages&Reactions/post-message.php" method="post">
                 <label for="post-message">Entrez votre message:</label>
                 <input type="text" id="post-message" name="message" placeholder="Entrez votre message (50 caractères max.)" required maxlength="50">
+                <label for="post-tag"> Entrez vos tags (séparés d'un espace): </label>
+                <input type="text" id="post-message" name="tags" placeholder="Entrez vos tags"><br/>
                 <input type="submit" value="Poster" />
                 <span class="validity"></span>
             </form>
