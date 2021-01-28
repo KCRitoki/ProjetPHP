@@ -103,9 +103,28 @@ $page_actuelle=$_GET['page'];
                             '<button type="submit" name="reaction" value="cute"> &#128525 <br/>' . $row['cute'] . '</button>' .
                             '<button type="submit" name="reaction" value="style"> &#128559 <br/>' . $row['style'] . '</button>' .
                             '<button type="submit" name="reaction" value="swag"> &#128526 <br/>' . $row['swag'] . '</button>' .
-                            '</form>' .
-                            '<p align="left">Tags : <a href="rentrer search tag">βchien</a>, <a href="rentrer search tag">βloremipsum</a></p>' .
-                            '<br/>' .
+                            '</form>';
+                            // Récupération de la taglist
+							$query2 = 'SELECT * FROM tags WHERE idMessage=\'' . $row['id'] . '\';';
+							$result2 = mysqli_query($dbLink, $query2);				
+							if(mysqli_num_rows($result2)>0)
+							{
+								$row2=mysqli_fetch_array($result2);
+								$taglist=$row2['taglist'];
+								echo '<p align="left">Tags : ';
+								if(!preg_match('~β.[^ ]*~', $taglist, $output))
+								{
+									break;
+								}
+								echo $output[0];
+								$taglist=substr($taglist,strlen($output[0]));
+								while(preg_match('~β.[^ ]*~', $taglist, $output))
+								{
+									echo ', ' . $output[0];
+									$taglist=substr($taglist,strlen($output[0]));
+								}
+							}
+                            echo '<br/>' .
                          '</div>';
                 }
             ?>
