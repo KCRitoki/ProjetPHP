@@ -5,7 +5,8 @@
 	start_page('S\'inscrire');
 ?>
 
-<html lang="fr">
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Vanéstarre</title>
@@ -14,7 +15,8 @@
 	<style>A {text-decoration: none;} </style>
 	<body>
 
-		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png" alt="logo"> </a></div>
+		<!-- Logo Vanestarre -->
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
 
 	
 		<form action="data-processing.php" method="post" class="login">

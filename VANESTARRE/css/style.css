@@ -25,6 +25,11 @@ body
 	background-color: #FFFFE0;
 }
 
+.nav 
+{
+	text-align: right;
+}
+
 #menu
 {
 	text-align: right;
@@ -81,7 +86,7 @@ input
 	padding-top: 10px;
 }
 
-#post 
+.post 
 {
 	text-align: center;
 	background-color: #E2FCFB;

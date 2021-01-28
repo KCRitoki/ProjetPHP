@@ -18,8 +18,8 @@
 	<style>A {text-decoration: none;} </style>
 
 	<body>
-		<div align="right"><p><a href="./index.php">Accueil    </a><a href="./index.php?logout=true">Déconnexion</a></div>
-		<div id="logo"><img src="./images/Vanestarre.png"></div>
+		<div align="right"><p><a href="./index.php?logout=true">Déconnexion</a></div>
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
 		<h1 class="shadow">Profil</h1>
 		<div id="profile">
 			<h2><?php echo $_SESSION['login']; ?></h2>
