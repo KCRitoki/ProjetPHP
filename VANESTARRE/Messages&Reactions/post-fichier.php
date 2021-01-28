@@ -1,5 +1,5 @@
 <?php
-include '../fonctions.php';
+include '../functions.php';
 
 $target_dir = '..\uploads';
 $uploadOk = 1;
