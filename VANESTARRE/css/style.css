@@ -46,13 +46,14 @@ input, label
 	text-align: center;
 }
 
-#logo
+.logo
 {
 	height: 150px;
 	width: 150px;
+	width: 50%
 }
 
-img, .buttonPage
+img, buttonPage
 {
 	height: auto;
 	width: 20%;
@@ -175,9 +176,4 @@ input
 {
 	display: flex;
 	justify-content: space-between;
-}
-
-.buttonPage
-{
-
 }
