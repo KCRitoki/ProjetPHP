@@ -7,6 +7,12 @@ if (!isset($_SESSION['suid']) || empty($_SESSION['suid']))
 	exit();
 }
 
+if(isset($_SESSION['login']) && $_SESSION['login']=== 'Vanestarre')
+{
+	header('Location: connected-vanestarre.php');
+	exit();
+}
+
 $bitcoin=$_SESSION['bitcoin'];
 
 $page_actuelle=$_GET['page'];
