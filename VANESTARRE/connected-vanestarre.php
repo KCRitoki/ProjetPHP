@@ -37,17 +37,7 @@ $page_actuelle=$_GET['page'];
             <span class="validity"></span>
         </div> <br>
 
-        <!-- Boite de texte d'envoi de messages -->
-        <div class="post">
-            <form action="Messages&Reactions/post-message.php" method="post">
-                <label for="post-message">Entrez votre message:</label>
-                <input type="text" id="post-message" name="message" placeholder="Entrez votre message (50 caractères max.)" required maxlength="50">
-                <label for="post-tag"> Entrez vos tags (séparés d'un espace): </label>
-                <input type="text" id="post-message" name="tags" placeholder="Entrez vos tags"><br/>
-                <input type="submit" value="Poster" />
-                <span class="validity"></span>
-            </form>
-        </div>
+        
         <?php
             // Connexion à la base de données
             connect_bd($dbLink);
@@ -66,10 +56,6 @@ $page_actuelle=$_GET['page'];
             
             $nbPages = ceil($nbPostTotal/$nbPost);
             
-            // Récupération des $nbPost derniers messages
-            //$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-            //$result = mysqli_query($dbLink, $query);
-            
             if(!isset($page_actuelle) || empty($page_actuelle))
             {
                 $page_actuelle=0;
@@ -79,34 +65,47 @@ $page_actuelle=$_GET['page'];
             {
                 // Récupération des $nbPost derniers messages PREMIERE PAGE
                 $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-                $result2 = mysqli_query($dbLink, $query);
-                $row2=mysqli_fetch_array($result2);
+                $result = mysqli_query($dbLink, $query);
             }else{
                 // Récupération des $nbPost derniers messages AUTRE PAGE
                 $offset = $nbPost*$page_actuelle;
                 $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
-                $result2 = mysqli_query($dbLink, $query);
-                $row2=mysqli_fetch_array($result2);
+                $result = mysqli_query($dbLink, $query);
             }
+			
+			
+			// Récupération du dernier id
+            $queryDernierId = 'SELECT * FROM messages WHERE id >= ALL (SELECT id FROM messages)';
+            $resultDernierId = mysqli_query($dbLink, $queryDernierId);
+            $rowDernierId=mysqli_fetch_array($resultDernierId);
+			
         ?>
-
-        <?php
-        //upload de fichiers
-        echo '<form enctype="multipart/form-data" action="Messages&Reactions/post-fichier.php?idmsg= '.$row2['id'].' " method="post">' .
-            '<input type="hidden" name="MAX_FILE_SIZE" value="500000" />' .
-            'Envoyez ce fichier :' . '<input name="file" type="file" />' .
-            '<input type="submit" value="Envoyer le fichier" />' . '<br/>' .
-            '</form>' . '</br>';
-
-        ?>
+		
+		<!-- Boite de texte d'envoi de messages -->
+        <div class="post">
+            <form enctype="multipart/form-data" action="Messages&Reactions/post-message.php?idmsg=<?php echo $rowDernierId['id'] ?>" method="post">
+                <label for="post-message">Entrez votre message:</label>
+                <input type="text" id="post-message" name="message" placeholder="Entrez votre message (50 caractères max.)" required maxlength="50">
+                <label for="post-tag"> Entrez vos tags (séparés d'un espace): </label>
+                <input type="text" id="post-message" name="tags" placeholder="Entrez vos tags"><br/>
+				<input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+				<label for="post-image"> Envoyez ce fichier :</label>
+				<input name="file" type="file" />
+                <input type="submit" value="Poster" />
+                <span class="validity"></span>
+            </form>
+        </div>
 
         <!-- Les différents posts de Vanestarre -->
         <div id="vaneline">
             <?php
                 //affichage des posts
                 while ($row=mysqli_fetch_array($result)){
-                    echo '<div class="post">' .
-                            '<p>' . $row['message'] . '</p>' .
+                    echo '<div class="post">';
+							if (isset($row['imglink'])){
+								echo '<img src="Uploads/' . $row['imglink'] . '">';
+							}
+                            echo '<p>' . $row['message'] . '</p>' .
                             '<form action="Messages&Reactions/post-reaction.php?id='.$row['id'].' " method="post">' .
                             '<button type="submit" name="reaction" value="love"> &#128151;<br/>' . $row['love'] . '</button>' .
                             '<button type="submit" name="reaction" value="cute"> &#128525;<br/>' . $row['cute'] . '</button>' .

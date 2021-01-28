@@ -61,10 +61,6 @@ $page_actuelle=$_GET['page'];
 			
 			$nbPages = ceil($nbPostTotal/$nbPost);
 			
-            // Récupération des $nbPost derniers messages
-            //$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-            //$result = mysqli_query($dbLink, $query);
-			
 			if(!isset($page_actuelle) || empty($page_actuelle))
 			{
 				$page_actuelle=0;
@@ -81,6 +77,7 @@ $page_actuelle=$_GET['page'];
 				$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
 				$result = mysqli_query($dbLink, $query);
 			}
+			
         ?>
 
         <!-- Les différents posts de Vanestarre -->
@@ -88,8 +85,11 @@ $page_actuelle=$_GET['page'];
             <?php
                 //affichage des posts
                 while ($row=mysqli_fetch_array($result)){
-                    echo '<div class="post">' .
-                            '<p>' . $row['message'] . '</p>' .
+                    echo '<div class="post">';
+							if (isset($row['imglink'])){
+								echo '<img src="Uploads/' . $row['imglink'] . '">';
+							}
+                            echo '<p>' . $row['message'] . '</p>' .
                             '<form action="Messages&Reactions/post-reaction.php?id='.$row['id'].' " method="post">' .
                             '<button type="submit" name="reaction" value="love" disabled> &#128151;<br/>' . $row['love'] . '</button>' .
                             '<button type="submit" name="reaction" value="cute" disabled> &#128525;<br/>' . $row['cute'] . '</button>' .
