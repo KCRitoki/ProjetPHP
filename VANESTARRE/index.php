@@ -20,6 +20,8 @@ if (isset($_SESSION['suid']) || !empty($_SESSION['suid']))
 	header('Location: connected.php');
 	exit();
 }
+
+$page_actuelle=$_GET['page'];
 ?>
 <!DOCTYPE html>
 
@@ -51,9 +53,34 @@ if (isset($_SESSION['suid']) || !empty($_SESSION['suid']))
 			$row=mysqli_fetch_array($result);
 			$nbPost=$row['nbPost'];
 			
+			// Récupération du nombre de posts total
+			$query = 'SELECT COUNT(*) AS nb_messages FROM messages';
+			$result = mysqli_query($dbLink, $query);
+			$row=mysqli_fetch_array($result);
+			$nbPostTotal=$row['nb_messages'];
+			
+			$nbPages = ceil($nbPostTotal/$nbPost);
+			
             // Récupération des $nbPost derniers messages
-            $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-            $result = mysqli_query($dbLink, $query);
+            //$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
+            //$result = mysqli_query($dbLink, $query);
+			
+			if(!isset($page_actuelle) || empty($page_actuelle))
+			{
+				$page_actuelle=0;
+			}
+			
+			if($page_actuelle===0)
+			{
+				// Récupération des $nbPost derniers messages PREMIERE PAGE
+				$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
+				$result = mysqli_query($dbLink, $query);
+			}else{
+				// Récupération des $nbPost derniers messages AUTRE PAGE
+				$offset = $nbPost*$page_actuelle;
+				$query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
+				$result = mysqli_query($dbLink, $query);
+			}
         ?>
 
         <!-- Les différents posts de Vanestarre -->
@@ -74,6 +101,19 @@ if (isset($_SESSION['suid']) || !empty($_SESSION['suid']))
                          '</div>';
                 }
             ?>
+
+            <div id="buttonPage">
+
+            	<?php if ($page_actuelle != 0) { ?>
+            		<a href="index.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png"> </a>
+            	<?php } ?>
+
+				<?php if ($page_actuelle != $nbPages-1) { ?>
+            		<a href="index.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png"> </a>
+            	<?php } ?>
+
+            </div>
+
         </div>
 
 
