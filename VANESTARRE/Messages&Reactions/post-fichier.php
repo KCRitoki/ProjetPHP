@@ -1,7 +1,7 @@
 <?php
 include '../functions.php';
 
-$target_dir = '..\uploads';
+$target_dir = '../uploads';
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo(basename($_FILES["file"]["name"]),PATHINFO_EXTENSION));
 $idmsg = $_GET['idmsg'] + 1;
