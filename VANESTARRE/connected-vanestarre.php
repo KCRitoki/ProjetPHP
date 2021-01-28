@@ -79,19 +79,20 @@ $page_actuelle=$_GET['page'];
             {
                 // Récupération des $nbPost derniers messages PREMIERE PAGE
                 $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT 0, ' . $nbPost;
-                $result = mysqli_query($dbLink, $query);
+                $result2 = mysqli_query($dbLink, $query);
+                $row2=mysqli_fetch_array($result2);
             }else{
                 // Récupération des $nbPost derniers messages AUTRE PAGE
                 $offset = $nbPost*$page_actuelle;
                 $query = 'SELECT * FROM messages ORDER BY id DESC LIMIT ' . $offset . ', ' . $nbPost;
-                $result = mysqli_query($dbLink, $query);
-                $row=mysqli_fetch_array($result);
+                $result2 = mysqli_query($dbLink, $query);
+                $row2=mysqli_fetch_array($result2);
             }
         ?>
 
         <?php
         //upload de fichiers
-        echo '<form enctype="multipart/form-data" action="Messages&Reactions/post-fichier.php?idmsg= '.$row['id'].' " method="post">' .
+        echo '<form enctype="multipart/form-data" action="Messages&Reactions/post-fichier.php?idmsg= '.$row2['id'].' " method="post">' .
             '<input type="hidden" name="MAX_FILE_SIZE" value="500000" />' .
             'Envoyez ce fichier :' . '<input name="file" type="file" />' .
             '<input type="submit" value="Envoyer le fichier" />' . '<br/>' .
