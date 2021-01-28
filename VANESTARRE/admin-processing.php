@@ -14,7 +14,7 @@
 	switch ($action){
 		// CRUD USERS
         case 'CMembre':
-            $query = 'INSERT INTO users (email, login, password) VALUES (\'' . $_POST['email'] . '\', \'' . $_POST['login'] . '\', \'' . $_POST['password'] . '\');';
+            $query = 'INSERT INTO users (email, login, password) VALUES (\'' . $_POST['email'] . '\', \'' . $_POST['login'] . '\', \'' . md5($_POST['password']) . '\');';
 
             if (!($dbResult = mysqli_query($dbLink, $query))) {
                 echo 'Erreur dans requête<br />';
