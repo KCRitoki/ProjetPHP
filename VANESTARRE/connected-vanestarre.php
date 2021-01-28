@@ -11,7 +11,7 @@ $page_actuelle=$_GET['page'];
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>Vanéstarre</title>
@@ -20,17 +20,17 @@ $page_actuelle=$_GET['page'];
     <style>A {text-decoration: none;} </style>
     <body>
         <!-- Boutons pour changer de pages -->
-        <div align="right"><p> <a href="./admin.php">Interface administrateur    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
+        <div class="nav"><p> <a href="./admin.php">Interface administrateur    </a> <a href="./profil.php">Profil    </a><a href="./index.php?logout=true">Déconnexion</a></p></div>
 
         <!-- Logo Vanestarre -->
-        <div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
+        <div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png" alt="logo"> </a></div>
 
         <!-- Titre de la page -->
         <h1 class="shadow">Vanéstarre</h1>
 
         <!-- Boite de texte de la recherche par tags -->
-        <div id="search" align="center">
-            <label for="site-search">Recherche par tag:</label>
+        <div id="search">
+            <label for="tag-search">Recherche par tag:</label>
             <input type="search" id="tag-search" name="q" placeholder="βtag" pattern="β[A-z]">
 
             <button>Recherche</button>
@@ -38,7 +38,7 @@ $page_actuelle=$_GET['page'];
         </div> <br>
 
         <!-- Boite de texte d'envoi de messages -->
-        <div id="post" align="center">
+        <div class="post">
             <form action="Messages&Reactions/post-message.php" method="post">
                 <label for="post-message">Entrez votre message:</label>
                 <input type="text" id="post-message" name="message" placeholder="Entrez votre message (50 caractères max.)" required maxlength="50">
@@ -92,38 +92,38 @@ $page_actuelle=$_GET['page'];
             <?php
                 //affichage des posts
                 while ($row=mysqli_fetch_array($result)){
-                    echo '<div id="post">' .
+                    echo '<div class="post">' .
                             '<p>' . $row['message'] . '</p>' .
-                            '<form action="Messages&Reactions/post-reaction.php?id= '.$row['id'].' " method="post">' .
-                            '<button type="submit" name="reaction" value="love"> &#128151 <br/>' . $row['love'] . '</button>' .
-                            '<button type="submit" name="reaction" value="cute"> &#128525 <br/>' . $row['cute'] . '</button>' .
-                            '<button type="submit" name="reaction" value="style"> &#128559 <br/>' . $row['style'] . '</button>' .
-                            '<button type="submit" name="reaction" value="swag"> &#128526 <br/>' . $row['swag'] . '</button>' .
+                            '<form action="Messages&Reactions/post-reaction.php?id='.$row['id'].' " method="post">' .
+                            '<button type="submit" name="reaction" value="love"> &#128151;<br/>' . $row['love'] . '</button>' .
+                            '<button type="submit" name="reaction" value="cute"> &#128525;<br/>' . $row['cute'] . '</button>' .
+                            '<button type="submit" name="reaction" value="style"> &#128559;<br/>' . $row['style'] . '</button>' .
+                            '<button type="submit" name="reaction" value="swag"> &#128526;<br/>' . $row['swag'] . '</button>' .
                             '</form>';
                             // Récupération de la taglist
-							$query2 = 'SELECT * FROM tags WHERE idMessage=\'' . $row['id'] . '\';';
-							$result2 = mysqli_query($dbLink, $query2);				
-							if(mysqli_num_rows($result2)>0)
-							{
-								$row2=mysqli_fetch_array($result2);
-								$taglist=$row2['taglist'];
-								echo '<p align="left">Tags : ';
-								if(!preg_match('~β.[^ ]*~', $taglist, $output))
-								{
-									break;
-								}
-								echo $output[0];
-								$taglist=substr($taglist,strlen($output[0]));
-								while(preg_match('~β.[^ ]*~', $taglist, $output))
-								{
-									echo ', ' . $output[0];
-									$taglist=substr($taglist,strlen($output[0]));
-								}
-							}
+                            $query2 = 'SELECT * FROM tags WHERE idMessage=\'' . $row['id'] . '\';';
+                            $result2 = mysqli_query($dbLink, $query2);              
+                            if(mysqli_num_rows($result2)>0)
+                            {
+                                $row2=mysqli_fetch_array($result2);
+                                $taglist=$row2['taglist'];
+                                echo '<p align="left">Tags : ';
+                                if(!preg_match('~β.[^ ]*~', $taglist, $output))
+                                {
+                                    break;
+                                }
+                                echo $output[0];
+                                $taglist=substr($taglist,strlen($output[0]));
+                                while(preg_match('~β.[^ ]*~', $taglist, $output))
+                                {
+                                    echo ', ' . $output[0];
+                                    $taglist=substr($taglist,strlen($output[0]));
+                                }
+                            }
                             echo '<br/>' .
                          '</div>';
-					
-					
+                    
+                    
                 }
             ?>
 
@@ -131,11 +131,11 @@ $page_actuelle=$_GET['page'];
             <div id="buttonPage">
 
                 <?php if ($page_actuelle != 0) { ?>
-                    <a href="connected-vanestarre.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png"> </a>
+                    <a href="connected-vanestarre.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png" alt="fleche-gauche"> </a>
                 <?php } ?>
 
                 <?php if ($page_actuelle != $nbPages-1) { ?>
-                    <a href="connected-vanestarre.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png"> </a>
+                    <a href="connected-vanestarre.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png" alt="fleche-droite"> </a>
                 <?php } ?>
 
             </div>
@@ -146,4 +146,3 @@ $page_actuelle=$_GET['page'];
         </div>
     </body>
 </html>
-

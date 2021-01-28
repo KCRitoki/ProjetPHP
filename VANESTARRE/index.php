@@ -25,7 +25,7 @@ $page_actuelle=$_GET['page'];
 ?>
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<title>Vanéstarre</title>
@@ -33,11 +33,11 @@ $page_actuelle=$_GET['page'];
 	</head>
 
 	<body>
-		<div align="right"><p><a href="http://bdr-projet.alwaysdata.net/login.php">Connexion</a>/<a href="http://bdr-projet.alwaysdata.net/inscription.php">Inscription</a></p></div>
-		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
+		<div class="nav"><p><a href="http://bdr-projet.alwaysdata.net/login.php">Connexion</a>/<a href="http://bdr-projet.alwaysdata.net/inscription.php">Inscription</a></p></div>
+		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png" alt="logo"> </a></div>
 		<h1 class="shadow">Vanéstarre</h1>
-		<div id="search" align="center">
-			<label for="site-search">Recherche par tag:</label>
+		<div id="search">
+			<label for="tag-search">Recherche par tag:</label>
 			<input type="search" id="tag-search" name="q" placeholder="βtag" pattern="β[A-z]">
 
 			<button>Recherche</button>
@@ -88,13 +88,13 @@ $page_actuelle=$_GET['page'];
             <?php
                 //affichage des posts
                 while ($row=mysqli_fetch_array($result)){
-                    echo '<div id="post">' .
+                    echo '<div class="post">' .
                             '<p>' . $row['message'] . '</p>' .
-                            '<form action="Messages&Reactions/post-reaction.php?id= '.$row['id'].' " method="post">' .
-                            '<button type="submit" name="reaction" value="love" disabled> &#128151 <br/>' . $row['love'] . '</button>' .
-                            '<button type="submit" name="reaction" value="cute" disabled> &#128525 <br/>' . $row['cute'] . '</button>' .
-                            '<button type="submit" name="reaction" value="style" disabled> &#128559 <br/>' . $row['style'] . '</button>' .
-                            '<button type="submit" name="reaction" value="swag" disabled> &#128526 <br/>' . $row['swag'] . '</button>' .
+                            '<form action="Messages&Reactions/post-reaction.php?id='.$row['id'].' " method="post">' .
+                            '<button type="submit" name="reaction" value="love" disabled> &#128151;<br/>' . $row['love'] . '</button>' .
+                            '<button type="submit" name="reaction" value="cute" disabled> &#128525;<br/>' . $row['cute'] . '</button>' .
+                            '<button type="submit" name="reaction" value="style" disabled> &#128559;<br/>' . $row['style'] . '</button>' .
+                            '<button type="submit" name="reaction" value="swag" disabled> &#128526;<br/>' . $row['swag'] . '</button>' .
                             '</form>';
                             // Récupération de la taglist
 							$query2 = 'SELECT * FROM tags WHERE idMessage=\'' . $row['id'] . '\';';
@@ -103,7 +103,7 @@ $page_actuelle=$_GET['page'];
 							{
 								$row2=mysqli_fetch_array($result2);
 								$taglist=$row2['taglist'];
-								echo '<p align="left">Tags : ';
+								echo '<p class="tags">Tags : ';
 								if(!preg_match('~β.[^ ]*~', $taglist, $output))
 								{
 									break;
@@ -124,11 +124,11 @@ $page_actuelle=$_GET['page'];
             <div id="buttonPage">
 
             	<?php if ($page_actuelle != 0) { ?>
-            		<a href="index.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png"> </a>
+            		<a href="index.php?page=<?php echo $page_actuelle-1 ?>"><img src="./images/flecheg.png" alt="fleche-gauche"> </a>
             	<?php } ?>
 
 				<?php if ($page_actuelle != $nbPages-1) { ?>
-            		<a href="index.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png"> </a>
+            		<a href="index.php?page=<?php echo $page_actuelle+1 ?>"><img src="./images/fleched.png" alt="fleche-droite"> </a>
             	<?php } ?>
 
             </div>
@@ -144,4 +144,3 @@ $page_actuelle=$_GET['page'];
 
 
 </html>
-

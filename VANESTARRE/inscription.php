@@ -2,16 +2,15 @@
 	include 'functions.php';
 	session_start();
 	
-	start_page('S\'inscrire');
 ?>
 
+<!DOCTYPE html>
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<title>Vanéstarre</title>
 		<link rel="stylesheet" href="./css/style.css">
 	</head>
-	<style>A {text-decoration: none;} </style>
 	<body>
 
 		<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png" alt="logo"> </a></div>
@@ -50,5 +49,4 @@
 	}
 	unset($_SESSION['error']);
 
-	end_page();
 ?>

@@ -4,7 +4,6 @@
 ?>
 
 <?php
-	start_page('Se connecter');
 	
 	if($_SESSION['error']=='erreurauth')
 	{
@@ -27,7 +26,7 @@
 <!DOCTYPE html>
 
 
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <title>Vanéstarre</title>
@@ -36,7 +35,7 @@
 <body>
 
 	<!-- Logo Vanestarre -->
-	<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png"> </a></div>
+	<div class="logo"><a href="./index.php"> <img src="./images/Vanestarre.png" alt="logo"> </a></div>
 
 	<h1 class="shadow">Connectez vous</h1>
 
@@ -67,7 +66,3 @@
 </body>
 
 </html>
-
-<?php
-	end_page();
-?>
