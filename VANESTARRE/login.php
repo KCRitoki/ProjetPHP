@@ -50,7 +50,7 @@
 	<h1 class="shadow">Inscrivez vous</h1>
 
 	<div class="login">
-		<br/>Pas encore inscrit? <a href="main.php">Cliquez ici</a><br/>
+		<br/>Pas encore inscrit? <a href="inscription.php">Cliquez ici</a><br/>
 	</div>
 
 	<h1 class="shadow">Mot de passe oublié</h1>

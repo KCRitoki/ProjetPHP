@@ -13,13 +13,13 @@
 	if(empty($identifiant) || empty($email) || empty($motdepasse) || empty($motdepasse2))
 	{
 		$_SESSION['error']='erreurEmpty';
-		header('Location: main.php');
+		header('Location: inscription.php');
 		exit();
 	}
 	if($motdepasse!==$motdepasse2)
 	{
 		$_SESSION['error']='erreurPassword';
-		header('Location: main.php');
+		header('Location: inscription.php');
 		exit();
 	}
 
@@ -42,7 +42,7 @@
 	if(mysqli_num_rows($dbResult)>=1)
 	{
 		$_SESSION['error']='erreurMailDouble';
-		header('Location: main.php');
+		header('Location: inscription.php');
 		exit();
 	}
 	
@@ -62,7 +62,7 @@
 	if(mysqli_num_rows($dbResult)>=1)
 	{
 		$_SESSION['error']='erreurLoginDouble';
-		header('Location: main.php');
+		header('Location: inscription.php');
 		exit();
 	}
 	
