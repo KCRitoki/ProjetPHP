@@ -22,7 +22,7 @@
     // Connexion à la base de données
     connect_bd($dbLink);
 
-	if(isset($_FILES['file']) && !empty($_FILES['file']))
+	if(file_get_contents($_FILES['file']['tmp_name']))
 	{
 	//vérification de si le fichier est bien une image
 	if(isset($_POST["submit"])) {
