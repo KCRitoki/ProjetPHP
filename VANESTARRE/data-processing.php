@@ -22,10 +22,19 @@
 		header('Location: inscription.php');
 		exit();
 	}
+?>
+	<!DOCTYPE html>
 
-	start_page('Inscription terminée');
-	
-	
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Administration</title>
+		<link rel="stylesheet" href="./css/style.css">
+	</head>
+	<style>A {text-decoration: none;} </style>
+	<body>
+
+	<?php 
 	$query = 'SELECT * FROM users WHERE email=?;';
 	
 	$stmt = mysqli_stmt_init($dbLink);
@@ -95,6 +104,6 @@
 	}
 	
 	echo '<br/><a href="http://bdr-projet.alwaysdata.net/index.php">Accueil</a><br/>';
+	?>
+	</body>
 	
-	end_page();
-?>
