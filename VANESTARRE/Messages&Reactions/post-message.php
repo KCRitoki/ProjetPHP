@@ -6,16 +6,32 @@
         header('Location: login.php');
         exit();
     }
+	// Connexion à la base de données
+    connect_bd($dbLink);
 	
 	$target_dir = '../Uploads';
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo(basename($_FILES["file"]["name"]),PATHINFO_EXTENSION));
-	if(!isset($idmsg) || empty($idmsg))
+	
+	// Verification existence de idMessage
+	$query = 'SELECT COUNT(*) FROM messages';
+
+	if(!($dbResult = mysqli_query($dbLink, $query)))
 	{
-		$idmsg=1;
+		echo 'Erreur dans requête<br />';
+		// Affiche le type d'erreur.
+		echo 'Erreur : ' . mysqli_error($dbLink) . '<br/>';
+		// Affiche la requête envoyée.
+		echo 'Requête : ' . $query . '<br/>';
+		exit();
+	}
+		
+	if(mysqli_num_rows($dbResult)>0)
+	{
+		$idmsg = $_GET['idmsg'] + 1;
 	}
 	else{
-		$idmsg = $_GET['idmsg'] + 1;
+		$idmsg=1;
 	}
 	$imgname = $idmsg . '.' . $imageFileType;
 
@@ -24,9 +40,6 @@
 
 	//récupération des tags
     $taglist = $_POST['tags'];
-	
-    // Connexion à la base de données
-    connect_bd($dbLink);
 
 	if(file_get_contents($_FILES['file']['tmp_name']))
 	{
