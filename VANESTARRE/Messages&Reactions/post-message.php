@@ -10,7 +10,13 @@
 	$target_dir = '../Uploads';
 	$uploadOk = 1;
 	$imageFileType = strtolower(pathinfo(basename($_FILES["file"]["name"]),PATHINFO_EXTENSION));
-	$idmsg = $_GET['idmsg'] + 1;
+	if(!isset($idmsg) || empty($idmsg))
+	{
+		$idmsg=1;
+	}
+	else{
+		$idmsg = $_GET['idmsg'] + 1;
+	}
 	$imgname = $idmsg . '.' . $imageFileType;
 
     //récupération du message
