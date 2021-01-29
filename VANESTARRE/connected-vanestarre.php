@@ -103,7 +103,7 @@ $page_actuelle=$_GET['page'];
                 while ($row=mysqli_fetch_array($result)){
                     echo '<div class="post">';
 							if (isset($row['imglink'])){
-								echo '<img src="Uploads/' . $row['imglink'] . '">';
+								echo '<img src="Uploads/' . $row['imglink'] . '" alt="image_post">';
 							}
                             echo '<p>' . $row['message'] . '</p>' .
                             '<form action="Messages&Reactions/post-reaction.php?id='.$row['id'].' " method="post">' .
